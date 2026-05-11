@@ -1,0 +1,92 @@
+app:
+  name: Nerva Ops
+  environment: development
+  host: 0.0.0.0
+  port: 8080
+  timezone: Asia/Kolkata
+
+owner:
+  whatsapp_number: ""
+  display_name: Boss
+
+ai:
+  nvidia:
+    enabled: true
+    api_key_env: NVIDIA_API_KEY
+    base_url_env: NVIDIA_BASE_URL
+    model_env: NVIDIA_MODEL
+    temperature: 0.2
+    max_tokens: 2048
+  claude_cli:
+    enabled: true
+    executable_env: CLAUDE_CLI_PATH
+    mode: coding_helper
+    timeout_seconds: 180
+  chatgpt_bridge:
+    enabled: true
+    require_manual_pasteback: true
+
+whatsapp:
+  enabled: false
+  access_token_env: WHATSAPP_ACCESS_TOKEN
+  phone_number_id_env: WHATSAPP_PHONE_NUMBER_ID
+  verify_token_env: WHATSAPP_VERIFY_TOKEN
+  max_direct_file_mb: 100
+
+security:
+  require_scope_match: true
+  require_approval_for_medium_risk: true
+  require_approval_for_high_risk: true
+  default_rate_limit_rps: 2
+  allowed_domains: []
+  blocked_domains:
+    - localhost
+    - 127.0.0.1
+    - 0.0.0.0
+  banned_shell_patterns:
+    - rm -rf
+    - curl | sh
+    - wget | bash
+    - nc -e
+    - /dev/tcp
+    - --os-shell
+    - dump passwords
+    - credential stuffing
+    - persistence
+
+tools:
+  httpx:
+    enabled: true
+    risk: low
+  nuclei:
+    enabled: true
+    risk: low
+    default_severity: low,medium
+  katana:
+    enabled: true
+    risk: low
+  ffuf:
+    enabled: false
+    risk: medium
+  zap_baseline:
+    enabled: false
+    risk: medium
+  playwright:
+    enabled: true
+    risk: low
+
+reports:
+  output_dir: reports/output
+  formats:
+    - markdown
+    - html
+  include_screenshots: true
+
+uploads:
+  provider: local
+  local_output_dir: uploads
+  public_base_url: ""
+
+dashboard:
+  enabled: true
+  admin_password_env: NERVA_DASHBOARD_ADMIN_PASSWORD
