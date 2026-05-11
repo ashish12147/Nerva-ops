@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Local config and secrets
+config/settings.yaml
+config/*.local.yaml
+*.key
+*.pem
+*.token
+secrets/
+
+# Runtime data
+.data/
+logs/
+reports/output/
+uploads/
+artifacts/
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/
