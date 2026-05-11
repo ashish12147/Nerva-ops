@@ -1,0 +1,15 @@
+[Unit]
+Description=Nerva Ops Agent
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=/opt/nerva-ops
+EnvironmentFile=/opt/nerva-ops/.env
+ExecStart=/opt/nerva-ops/.venv/bin/uvicorn agent.main:app --host 0.0.0.0 --port 8080
+Restart=always
+RestartSec=5
+User=ashish
+
+[Install]
+WantedBy=multi-user.target
