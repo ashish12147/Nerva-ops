@@ -5,6 +5,7 @@ from fastapi.responses import HTMLResponse
 
 from agent.routes import router as api_router
 from dashboard.routes import router as dashboard_router
+from whatsapp.webhook import router as whatsapp_router
 
 app = FastAPI(
     title="Nerva Ops",
@@ -14,6 +15,7 @@ app = FastAPI(
 
 app.include_router(api_router, prefix="/api")
 app.include_router(dashboard_router)
+app.include_router(whatsapp_router)
 
 
 @app.get("/health")
@@ -31,6 +33,7 @@ def home() -> str:
         <p>Agent is online.</p>
         <p><a href='/settings'>Open settings dashboard</a></p>
         <p><a href='/docs'>Open API docs</a></p>
+        <p><code>/whatsapp/webhook</code> is mounted for WhatsApp Cloud API callbacks.</p>
       </body>
     </html>
     """
